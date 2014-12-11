@@ -32,13 +32,13 @@
 						<label class="col-md-4 col-sm-6 col-md-offset-2 control-label" style="text-align:left;"><h3>What was your total time?</h3></label>
 						<div style="margin-top:24px">
 							<div class="col-md-1 col-sm-2 col-xs-3">
-								<input type="text" pattern="\d*" class="form-control" ng-model="timeHrs" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="hours" tabindex="1">
+								<input type="text" pattern="\d*" class="form-control" ng-model="timeHrs" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="hrs" tabindex="1">
 							</div>
 							<div class="col-md-1 col-sm-2 col-xs-3">
-								<input type="text" pattern="\d*" class="form-control" ng-model="timeMin" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="mins" tabindex="2">
+								<input type="text" pattern="\d*" class="form-control" ng-model="timeMin" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="min" tabindex="2">
 							</div>
 							<div class="col-md-1 col-sm-2 col-xs-3">
-								<input type="text" pattern="\d*" class="form-control" ng-model="timeSecs" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="secs" tabindex="3">
+								<input type="text" pattern="\d*" class="form-control" ng-model="timeSec" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="sec" tabindex="3">
 							</div>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 			</div>
 		</div>
 		<div id="paceRow" class="row hide">
-			<div class="col-xs-12" style="text-align:center;"><h2>You ran <span style="color:#FF4719">{{paceMin}}:{{paceSecs}}</span> per {{unitStr}}!</h2></div>
+			<div class="col-xs-12" style="text-align:center;"><h2>You ran <span style="color:#FF4719">{{paceMin}}:{{paceSec}}</span> per {{unitStr}}!</h2></div>
 		</div>
 	</div>
 
