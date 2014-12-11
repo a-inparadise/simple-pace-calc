@@ -6,13 +6,23 @@ paceApp.controller('calcCtrl', function ($scope) {
 	$scope.dist = 0;
 	$scope.unit = "Miles";
 	$scope.unitStr = "mile";
-	$scope.timeHrs = 0;
-	$scope.timeMin = 0;
-	$scope.timeSecs = 0;
+	$scope.timeHrs = "hrs";
+	$scope.timeMin = "min";
+	$scope.timeSecs = "secs";
 
 	$scope.calculate = function() {
+		// don't calculate until there's a distance
 		if ($scope.dist > 0) {
-			var totalSecs = ($scope.timeHrs * 3600) + ($scope.timeMin * 60) + ($scope.timeSecs * 1);
+			var hours = $scope.timeHrs;
+			var min = $scope.timeMin;
+			var secs = $scope.timeSecs;
+
+			// do some error checking for NaN
+			if (isNaN(hours)) hours = 0;
+			if (isNaN(min)) min = 0;
+			if (isNaN(secs)) secs = 0;
+
+			var totalSecs = (hours * 3600) + (min * 60) + (secs * 1);
 
 			var pace = (totalSecs / $scope.dist) / 60;
 

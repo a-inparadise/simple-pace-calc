@@ -22,7 +22,7 @@
 	<div class="container">
 		<div class="row" style="text-align:center;">
 			<div class="col-sm-12">
-				<strong><h1>What was my pace?</h1></strong>
+				<strong><h1>What's my pace?</h1></strong>
 			</div>
 		</div>
 		<div class="row">
@@ -32,13 +32,13 @@
 						<label class="col-md-4 col-sm-6 col-md-offset-2 control-label" style="text-align:left;"><h3>What was your total time?</h3></label>
 						<div style="margin-top:24px">
 							<div class="col-md-1 col-sm-2 col-xs-3">
-								<input type="text" class="form-control" ng-model="timeHrs" ng-change="calculate()" placeholder="hours" tabindex="1">
+								<input type="text" pattern="\d*" class="form-control" ng-model="timeHrs" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="hours" tabindex="1">
 							</div>
 							<div class="col-md-1 col-sm-2 col-xs-3">
-								<input type="text" class="form-control" ng-model="timeMin" ng-change="calculate()" placeholder="mins" tabindex="2">
+								<input type="text" pattern="\d*" class="form-control" ng-model="timeMin" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="mins" tabindex="2">
 							</div>
 							<div class="col-md-1 col-sm-2 col-xs-3">
-								<input type="text" class="form-control" ng-model="timeSecs" ng-change="calculate()" placeholder="secs" tabindex="3">
+								<input type="text" pattern="\d*" class="form-control" ng-model="timeSecs" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="secs" tabindex="3">
 							</div>
 						</div>
 					</div>
@@ -52,7 +52,7 @@
 						<label class="col-md-4 col-sm-6 col-md-offset-2 control-label" style="text-align:left;"><h3>How far did you run?</h3></label>
 						<div style="margin-top:24px">
 							<div class="col-md-1  col-sm-2 col-xs-4">
-								<input type="text" class="form-control" ng-model="dist" ng-change="calculate()" placeholder="0" tabindex="4">
+								<input type="text" pattern="\d*" class="form-control" ng-model="dist" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="0" tabindex="4">
 							</div>
 							<div class="col-md-2 col-sm-3 col-xs-4">
 								<select class="form-control" ng-model="unit" ng-change="calculate()" tabindex="5">
