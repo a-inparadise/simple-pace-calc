@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="paceApp">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		body {
+			background-color: #FCFCFC;
+			/*background-image: url("/img/bg.jpg");
+			background-size: cover;*/
+		}
+		.row {
+			margin-top: 25px;
+			margin-bottom: 25px;
+		}
+	</style>
+
+	<title>Pace</title>
+</head>
+<body ng-controller="calcCtrl">
+	<div style="height:4px;width:100%;background:#FF4719"></div>
+	<div class="container">
+		<div class="row" style="text-align:center;">
+			<div class="col-sm-12">
+				<strong><h1>What was my pace?</h1></strong>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label class="col-md-4 col-sm-6 col-md-offset-2 control-label" style="text-align:left;"><h3>What was your total time?</h3></label>
+						<div style="margin-top:24px">
+							<div class="col-md-1 col-sm-2 col-xs-3">
+								<input type="text" class="form-control" ng-model="timeHrs" ng-change="calculate()" placeholder="hours" tabindex="1">
+							</div>
+							<div class="col-md-1 col-sm-2 col-xs-3">
+								<input type="text" class="form-control" ng-model="timeMin" ng-change="calculate()" placeholder="mins" tabindex="2">
+							</div>
+							<div class="col-md-1 col-sm-2 col-xs-3">
+								<input type="text" class="form-control" ng-model="timeSecs" ng-change="calculate()" placeholder="secs" tabindex="3">
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label class="col-md-4 col-sm-6 col-md-offset-2 control-label" style="text-align:left;"><h3>How far did you run?</h3></label>
+						<div style="margin-top:24px">
+							<div class="col-md-1  col-sm-2 col-xs-4">
+								<input type="text" class="form-control" ng-model="dist" ng-change="calculate()" placeholder="0" tabindex="4">
+							</div>
+							<div class="col-md-2 col-sm-3 col-xs-4">
+								<select class="form-control" ng-model="unit" ng-change="calculate()" tabindex="5">
+									<option>Miles</option>
+									<option>Kilometers</option>
+									<option>Meters</option>
+									<option>Yards</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div id="paceRow" class="row hide">
+			<div class="col-xs-12" style="text-align:center;"><h2>You ran <span style="color:#FF4719">{{paceMin}}:{{paceSecs}}</span> per {{unitStr}}!</h2></div>
+		</div>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	<script src="/js/controllers.js"></script>
+</body>
+</html>
