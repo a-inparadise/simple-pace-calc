@@ -58,6 +58,7 @@ paceApp.controller('calcCtrl', function ($scope) {
 
 	$scope.applyDistance = function(d) {
 		$scope.dist = d;
+		$scope.unit = "Miles";
 		$scope.calculate();
 	};
 
@@ -80,7 +81,17 @@ paceApp.controller('calcCtrl', function ($scope) {
 
 		// don't calculate until there's a distance
 		if ($scope.dist > 0) {
-			var pace = (totalSec / $scope.dist) / 60;
+			// apply unity scaler based on unit type
+			// scale everything to miles
+			var unitScale = 1;
+			if ($scope.unit == "Kms") 
+				unitScale = 0.621371;
+			else if ($scope.unit == "Meters")
+				unitScale = 0.000621371;
+			else if ($scope.unit == "Yards")
+				unitScale = 0.000568182;
+
+			var pace = (totalSec / ($scope.dist * unitScale)) / 60;
 
 			$scope.paceMin = Math.floor(pace);
 			$scope.paceSec = Math.floor((pace - $scope.paceMin) * 60);
