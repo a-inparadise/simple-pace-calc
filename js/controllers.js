@@ -6,9 +6,9 @@ paceApp.controller('calcCtrl', function ($scope) {
 	$scope.dist = 0;
 	$scope.unit = "Miles";
 	$scope.unitStr = "mile";
-	$scope.timeHrs = "hrs";
-	$scope.timeMin = "min";
-	$scope.timeSec = "sec";
+	$scope.timeHrs = "hh";
+	$scope.timeMin = "mm";
+	$scope.timeSec = "ss";
 
 	$scope.rangeLbls = [];
 	var ranges = {
@@ -59,7 +59,7 @@ paceApp.controller('calcCtrl', function ($scope) {
 	$scope.applyDistance = function(d) {
 		$scope.dist = d;
 		$scope.calculate();
-	}
+	};
 
 	$scope.calculate = function() {
 		var hours = $scope.timeHrs;
@@ -77,7 +77,6 @@ paceApp.controller('calcCtrl', function ($scope) {
 		$.each(ranges, function(i, v) {
 			if (totalSec >= v.l && totalSec <= v.h) $scope.rangeLbls.push(v);
 		});
-		console.log("Ranges: " + $scope.rangeLbls);
 
 		// don't calculate until there's a distance
 		if ($scope.dist > 0) {
@@ -96,5 +95,6 @@ paceApp.controller('calcCtrl', function ($scope) {
 	};
 
 	$("#raceRow").removeClass("hide");
+	$("#orRow").removeClass("hide");
 	$("#paceRow").removeClass("hide");
 });
