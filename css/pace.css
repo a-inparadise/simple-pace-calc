@@ -1,0 +1,35 @@
+body {
+	background-color: #fff; /*#FCFCFC;*/
+}
+
+.hide {
+	display: none;
+}
+
+/* row top and bottom margin override */
+.row {
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+
+.pace-header {
+	height: 4px;
+	width: 100%;
+	background: #FF4719
+}
+
+.left {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.title-top {
+	margin-top: 20px
+}
+
+.form-top {
+	margin-top: 12px;
+}

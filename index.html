@@ -3,72 +3,45 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link href="/css/bootstrap.min.css" rel="stylesheet">
-	<style type="text/css">
-		body {
-			background-color: #FCFCFC;
-		}
-		.row {
-			margin-top: 16px;
-			margin-bottom: 16px;
-		}
-	</style>
+	<link href="/css/pace.css" rel="stylesheet" type="text/css">
 
 	<title>easy pace</title>
 </head>
 <body ng-controller="calcCtrl">
-	<div style="height:4px;width:100%;background:#FF4719"></div>
+	<div class="pace-header"></div>
 	<div class="container">
-		<div class="row" style="text-align:center;">
-			<div class="col-md-2 col-md-offset-3 col-xs-4" style="text-align:right;margin-top:20px">
-				<h1><strong>easy</strong></h1>
-			</div>
-			<div class="col-md-2 col-xs-4" style="text-align:center">
-				<img src="/img/watch.png" height="100px" width="100px"/>
-			</div>
-			<div class="col-md-2 col-xs-4" style="text-align:left;margin-top:20px">
-				<h1><strong>pace</strong></h1>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 col-xs-12 center">
+				<h1>
+					<strong>
+						<span class="title-top">easy</span>
+						<img src="/img/watch.png" height="100px" width="100px"/>
+						<span class="title-top">pace</span>
+					</strong>
+				</h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-12" style="text-align:center;"><h2>What was your...</h2></div>
+			<div class="col-xs-12 center"><h2>What was your...</h2></div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
-						<label class="col-md-2 col-md-offset-3 col-sm-3 col-sm-offset-1 col-xs-4 control-label" style="text-align:left;"><h3>Time?</h3></label>
-						<div style="margin-top:12px">
-							<div class="col-md-4 col-sm-6 col-xs-8">
-								<table style="width:100%">
-									<tr>
-										<td>
-											<input type="text" class="form-control input-lg" ng-model="timeHrs" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="hh" tabindex="1">
-										</td>
-										<td style="padding-left:4px;padding-right:2px"><h4><strong>:</strong></h4></td>
-										<td>
-											<input type="text" class="form-control input-lg" ng-model="timeMin" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="mm" tabindex="2">
-										</td>
-										<td style="padding-left:4px;padding-right:2px"><h4><strong>:</strong></h4></td>
-										<td>
-											<input type="text" class="form-control input-lg" ng-model="timeSec" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="ss" tabindex="3">
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<div id="raceRow" class="row hide">
-			<div class="col-xs-12">
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<div class="col-md-6 col-md-offset-3 col-sm-9 col-sm-offset-1 col-xs-12" style="margin-top:18px">
+						<label class="col-md-2 col-md-offset-3 col-sm-3 col-sm-offset-1 col-xs-4 control-label"><h3 class="left">Time?</h3></label>
+						<div class="col-md-4 col-sm-6 col-xs-8 form-top">
 							<table style="width:100%">
 								<tr>
-									<td ng-repeat="r in rangeLbls" style="padding-right:2px">
-										<button type="button" class="btn btn-lg btn-danger" style="width:100%;" ng-click="applyDistance(r.d)">{{r.t}}</button>
+									<td>
+										<input type="number" class="form-control input-lg" ng-model="timeHrs" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="hh" tabindex="1">
+									</td>
+									<td style="padding-left:4px;padding-right:2px"><h4><strong>:</strong></h4></td>
+									<td>
+										<input type="number" class="form-control input-lg" ng-model="timeMin" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="mm" tabindex="2">
+									</td>
+									<td style="padding-left:4px;padding-right:2px"><h4><strong>:</strong></h4></td>
+									<td>
+										<input type="number" class="form-control input-lg" ng-model="timeSec" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="ss" tabindex="3">
 									</td>
 								</tr>
 							</table>
@@ -77,16 +50,35 @@
 				</form>
 			</div>
 		</div>
-		<div id="orRow" ng-show="rangeLbls.length > 0" class="row hide" style="margin-top:0px;margin-bottom:0px;">
-			<div class="col-xs-12" style="text-align:center">
-				<h3 style="margin:0;padding:0"><strong>or</strong></h3>
+		<div ng-show="guesses.length > 0">
+			<div class="row hide">
+				<div class="col-xs-12">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<div class="col-md-6 col-md-offset-3 col-sm-9 col-sm-offset-1 col-xs-12" style="margin-top:18px">
+								<table style="width:100%">
+									<tr>
+										<td ng-repeat="i in guesses" style="padding-right:2px">
+											<button type="button" class="btn btn-lg btn-danger" style="width:100%;" ng-click="applyDistance(ranges[i].d)">{{ranges[i].t}}</button>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row hide" style="margin-top:0px;margin-bottom:0px;">
+				<div class="col-xs-12 center">
+					<h3 style="margin:0;padding:0"><strong>or</strong></h3>
+				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
 				<form class="form-horizontal" role="form">
 					<div class="form-group">
-						<label class="col-md-2 col-md-offset-3 col-sm-3 col-sm-offset-1 col-xs-4 control-label" style="text-align:left;"><h3>Distance?</h3></label>
+						<label class="col-md-2 col-md-offset-3 col-sm-3 col-sm-offset-1 col-xs-4 control-label"><h3 class="left">Distance?</h3></label>
 						<div style="margin-top:12px">
 							<div class="col-md-2 col-sm-3 col-xs-4">
 								<input type="text" class="form-control input-lg" ng-model="dist" onClick="this.setSelectionRange(0, this.value.length);" ng-change="calculate()" placeholder="0" tabindex="4">
@@ -104,8 +96,8 @@
 				</form>
 			</div>
 		</div>
-		<div id="paceRow" class="row hide">
-			<div class="col-xs-12" style="text-align:center;"><h2>You ran <span style="color:#FF4719">{{paceMin}}:{{paceSec}}</span> per mile!</h2></div>
+		<div class="row hide">
+			<div class="col-md-6 col-md-offset-3 col-xs-12 center"><h2>You ran <span style="color:#FF4719">{{paceMin}}:{{paceSec}}</span> per mile!</h2></div>
 		</div>
 	</div>
 
